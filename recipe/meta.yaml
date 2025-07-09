@@ -1,5 +1,5 @@
 {% set name = "unicorn-binance-local-depth-cache" %}
-{% set version = "0.7.3" %}
+{% set version = "2.8.1" %}
 
 
 package:
@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/unicorn-binance-local-depth-cache-{{ version }}.tar.gz
-  sha256: 8ab7611690fc8ea9d697bfff97272bd72259aaa8a05e71e1b3c56051c2403172
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 050bf95fd78d8e2561d301af42a4944e136c9d990b6ce66d6f522152b7bd3dca
 
 build:
   number: 0
