@@ -1,5 +1,5 @@
 {% set name = "unicorn-binance-local-depth-cache" %}
-{% set version = "0.7.3" %}
+{% set version = "2.12.1" %}
 
 
 package:
@@ -7,26 +7,32 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/unicorn-binance-local-depth-cache-{{ version }}.tar.gz
-  sha256: 8ab7611690fc8ea9d697bfff97272bd72259aaa8a05e71e1b3c56051c2403172
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/unicorn_binance_local_depth_cache-{{ version }}.tar.gz
+  sha256: a6ba7b55773bcb61ccdcbe252c94bf9fb2fc6434d530bf23d078348dba0dee71
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
   host:
+    - python
     - pip
-    - python >=3.7
-    - requests
-    - unicorn-binance-rest-api
-    - unicorn-binance-websocket-api >=1.40.5
+    - setuptools
+    - wheel
+    - cython
+    - mypy
   run:
-    - python >=3.7
-    - requests
-    - unicorn-binance-rest-api
-    - unicorn-binance-websocket-api >=1.40.5
+    - python
+    - aiohttp
+    - cython >=3.0.10
+    - orjson
+    - requests >=2.32.3
+    - unicorn-binance-websocket-api >=2.12.0
+    - unicorn-binance-rest-api >=2.10.0
 
 test:
   imports:
@@ -37,16 +43,16 @@ test:
     - pip
 
 about:
-  home: https://www.lucit.tech/unicorn-binance-local-depth-cache.html
+  home: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
   summary: A local Binance DepthCache Manager for Python.
   description: |
-    The Python package UNICORN Binance Local Depth Cache provides a local
-    depth_cache for the Binance Exchanges Binance (+Testnet), Binance Futures
-    (+Testnet).
+    A local Binance DepthCache manager for Python that supports multiple depth
+    caches in one instance in an easy, fast, flexible, robust and fully-featured
+    way. Part of the UNICORN Binance Suite.
   license: MIT
   license_file: LICENSE
-  dev_url: https://github.com/LUCIT-Systems-and-Development/unicorn-binance-local-depth-cache
-  doc_url: https://unicorn-binance-local-depth-cache.docs.lucit.tech
+  dev_url: https://github.com/oliver-zehentleitner/unicorn-binance-local-depth-cache
+  doc_url: https://oliver-zehentleitner.github.io/unicorn-binance-local-depth-cache
 
 extra:
   recipe-maintainers:
